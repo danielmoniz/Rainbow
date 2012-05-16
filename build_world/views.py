@@ -144,6 +144,11 @@ class EntityUpdateView(UpdateView):
                 entity=entity, user=self.request.user)
 
         if version.modifies == entity.active_version:
+            # @TODO If the entity's current version does not exist, simply save the new version and point the entity to it.
+            if version.modifies == None:
+                pass
+            else:
+                pass
             # Find the diff, fill out the version, and modify the entity.
             old_entity = copy.deepcopy(entity)
             old_entity = utility.build_entity_to_version(entity.active_version)

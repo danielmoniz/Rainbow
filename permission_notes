@@ -1,0 +1,84 @@
+World - IN ORDER OF PERMISSIONS LEVELS
+- Each World has a Founder. This is simply the person who created the World.
+    - They cannot necessarily make executive decisions on everything, but they
+      also cannot be banned from viewing the project. (Or something? This
+      should be figured out.)
+    - This need not even be displayed for a while, as in most cases the Founder
+      will be the same as the owner.
+    - The founder can always read all entities within their own.
+- Each World has an Owner who can make executive decisions on everything within
+  the World. This includes submitting and allowing new content, editing, and
+  managing the positions of people within the World.
+    - By default, this is the Worlds creator.
+- Each World has some number of Chief Contributors, who can allow content to be
+  submitted (stories, art, etc.). They can submit anything themselves, still
+  subject to the editing process (but not the submission process; that is, they
+  can ensure that something is submitted by skipping the veto process). They
+  are in charge of all content within the World.
+    - CCs can allow users to become World contributors or editors (subject to
+      veto).
+    - They can request that a user becomes a World CC, but cannot perform it
+      themselves.
+    - They can promote anyone to being CC of a Story (see Stories section).
+    - There need not be any CCs.
+- A World can have a number of editors. Editors can remove @edit status from
+  any story within the World. They cannot, without further permissions, create
+  their own stories, artwork, etc.
+    - IMPORTANT: When working on a specific story, World Editors are outranked
+      by the Author of the story and any Chief Contributors therein. Stalemate
+      decisions are dealt with further down.
+    - A NOTE ON EDITORS: All content, when submitted, is subject to editing. It
+      is given the @edit tag or status. Editors can officially remove this
+      status.
+- Each World has some number of Contributors. A contributor is able to write
+  new stories and add to existing ones, but all content has to be allowed.
+    - World Contributors are considered to have approximately the same level of
+      permissions as World Editors when it comes to conflicting jurisdiction in
+      a Story.
+    - There need not be any Contributors. A solo project would have no
+      members of Contributor status.
+- Worlds can have any number of Unsanctioned Contributors. This content can be
+  accepted by a Chief Contributor, but they are under no obligation to do so.
+    - Until such unrequested submissions are accepted, they are considered to
+      be unedited Fan Fiction (or Fan Art).
+    - Such submissions can be edited but not accepted, remaining Fan Fiction.
+
+Story
+- Each Story has an Author. This is simply the person who creates the Story.
+    - They must be accepted by someone of proper permissions within the World.
+    - The Author has FULL EXECUTIVE POWER when inside their own story. This
+      means that they can decline any changes made by anyone. The situation
+      where a higher-ranking member from the World makes a demand and has it
+      refused by the Author is called a Stalemate Decision. This is dealt with
+      further down.
+- Each Story can have some number of Chief Contributors.
+    - These are like World CCs, but their permissions extend only to this
+      Story.
+    - There need not be any Story CCs.
+- A Story can have Editors. They are the same as World Editors, but they can
+  only edit for this Story.
+- Each Story has some number of Contributors. These are the same as world
+  Contributors, but their permissions do not extend past this story.
+    - There need not be any Contributors.
+- A Story can have any number of Unsanctioned Contributors in the same way as a
+  World.
+
+Art, Music, and Other Media
+- Art is Art. It therefore cannot be modified by anyone of a higher ranking
+  than the artist. It can, however, be declined by such a member (eg. a World
+  CC if submitting to the world in general, or an Author or Story CC if
+  contributing to a specific Story.
+- Art should (@TODO must?) be voted on.
+    - @TODO Need to know exactly how voting should work!
+
+Stalemate Decisions
+- @TODO Need to decide whether or not the World Owner should get more say than
+  the Author in an individual Story. OR, have it come down to a vote amongst
+contributors or readers.
+- A Stalemate Decision is when two people with executive power within a
+  specific jurisdiction disagree. An obvious case is when a World CC or World
+  Owner dislikes a portion of a specific Story, authored by a separate Author.
+  This must be resolved by the World Owner and the Story Author. Either the story
+  is disabled (not deleted; never deleted!), or the Author gets what they want.
+  The Story cannot be moved away from the World (@TODO What is preventing a user
+  from copying the Story and starting it elsewhere?).

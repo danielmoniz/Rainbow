@@ -1,0 +1,37 @@
+The Edit/Diff Problem
+- If one person edits and another editor wants to edit, do they see the text
+  with or without the first person's edits?
+
+Idea: Editors edits automatically go through, meaning that two editors
+separated in time will both be editing a full body of work without conflicts.
+
+New (Smaller) Problem: If two people edit something at the same time, both
+edits will be diffs of the same text. There could be conflicts.
+
+Solution: Notify the second person that their work conflicts with that of
+another editors.
+- This can be done naively by checking the entity's text at the time of
+  submission against the version that the latest edit points to. If they do not
+match, there might be conflicts.
+- Then immediately alert the second editor that their work could be
+  conflicting, and that they need to review their changes.
+	- In other words, the second editor does the manual merging!
+
+Solution 2: Have editors 'check out' a section for editing.
+- Projects would need to require a maximum amount of time for which an entity
+  can be checked out.
+- Other editors would have to be disallowed from editing while the entity is
+  checked out.
+	- Would the owner be able to add content while an editor has something
+	  checked out?
+		- Could allow editors to be warned when the owner wants to checkout
+		  their own entity.
+		- Can put up a JavaScript timer that lets people know that their
+		  checkout time is running out.
+		- When it runs out, what happens?
+
+Possible Solutions
+- Editors need to be disallowed from adding too much content.
+	- Eg. they cannot add twice as many lines as they delete (in terms of
+	  diffs).
+

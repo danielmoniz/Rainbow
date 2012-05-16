@@ -1,0 +1,73 @@
+WEB
+- Set up the server so that it can run Python using Apache.
+- Move over the relevant files.
+- Test!
+- Do a security check!
+
+MISC
+- Allow an entity owner to demote themself (eg. if they make someone else
+  owner, they might want to be Chief Contributor).
+- Improve ranking system.
+	- Have classes of ranks that are congruent in terms of rank.
+		- Eg. a 'chief' set who cannot kick each other or promote someone to a
+		  chief. But they outrank anyone in a lower rank class.
+        - This would greatly simply the permissions system logic.
+	- If need be, the ranks within a set can be ordered to decide who has the
+	  most authority.
+
+FUNCTIONAL
+- New content that has not yet been edited needs to be saved separately
+  (perhaps combine this with VERSIONING). It does not show up in the official
+  work until it has been verified by an editor.
+	- Can display the changes in HTML, ie. show a before/after of both text and
+	  styling.
+	- If there are edits requiring attention, the edits show up highlighted (or
+	  something) to editors, so that they can see what work is available.
+- Allow for complete stories to be 'published' via PDF or HTML (or other
+  eReader format).
+	- Can track views and downloads and allow for votes on the story (see
+      VOTES/POINTS, below).
+
+VERSIONING
+- Allow owners (and others?) to view older or newer versions.
+- Allow for different streams, eg. 'fan fiction', 'cannon', 'dev', etc.
+	- This attribute may need to be on versions.
+	- Will need to worry about having different branches of entities.
+	- Will also need to worry about merging branches.
+- In the case that a user begins editing something but submits after someone
+  else makes changes, a diff display must be shown.
+
+VOTES/POINTS
+- Allow users to vote on any entity
+- Display entities ordered by votes (total, total positive, etc.)
+- Allow votes on issues, eg. whether or not to kick someone out of a project.
+- Provide users points for creating a new world or story, having their edits go
+  through, and for having people upvote their work.
+	- OR, provide points only for number of views and number of upvotes on
+	  projects (perhaps except for the early stages, eg. starting their first
+	  World). This would keep the points prestigious.
+
+STYLING
+- Make the site not look like garbage.
+- Specifically, come up with a simple, highly readable colour scheme.
+
+SOCIAL
+- Allow users to private message each other.
+- Allow for calls to be made for people of certain skills and interests (sort
+  of like a job posting board).
+	Eg. "Looking for a Chief Contributor for a World."
+- Share links via Facebook.
+
+TIMELINES
+- Allow users to create a timeline describing the events of their world and
+  characters.
+- Use micro-sentences - the smallest possible sentence that gets across
+  information. Use multiple of these (in one event) instead of longer sentences.
+	- Eg:
+		- Event: AE 27, Battle, Asia Minor. (ie. date, event type, location).
+			- AE 27: Xerxes defeated.
+			- AE 27: Alexander victorious.
+	- This implies that, since these sub-events are tied to the same event,
+	  Alexander defeated Xerxes in battle.
+	- Have event types such as: Battle, birth, marriage, death.
+	- Have actions such as: born, killed, married, defeated, victorious.

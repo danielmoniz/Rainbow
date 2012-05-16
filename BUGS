@@ -1,0 +1,18 @@
+MISC
+- Diffs: if a person adds a new line, the old line is considered to have the
+  change (eg. a carriage return at the end of it).
+	- If I move to splitlines() instead of splitting on \\n, the following
+	  occurs due to the nature of unified_diff:
+		- If text1 had an empty line and text2 filled that empty line, the
+		  diff will consider that to be a new line. Therefore, when applied in
+		  reverse, the text will be missing a line, and when applied forwards, it should
+		  have an extra line.
+		- This could be fixed if I wrote my own diff tool.
+- The error page seems to mis-render the footer.
+	- The CSS does not seem to be gettig pulled in.
+- Entities and user relations are not rendering in a meaningful order. Need to
+  find a better way to sort them.
+
+LOGINS/SIGNUPS
+- emails do not have to be unique
+

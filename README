@@ -1,0 +1,6 @@
+A tool for author collaboration.
+
+NOTE: All database settings are in a file called private_settings.py. This is
+ignored by the git repository for security reasons. Simply create a function in
+private_settings.py called get_database_settings() that returns all database
+settings.

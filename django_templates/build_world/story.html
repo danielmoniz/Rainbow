@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ story.name }}</h1>
+
+<div class="notes">
+	{{ story.notes }}
+</div>
+
+<div class="sections">
+    {% for section in story.section_set.all %}
+	<a href="/section/{{ section.id }}">{{ section }}</a>
+	<a href="/section/{{ section.id }}/edit">(edit)</a>
+	<br />
+    {% endfor %}
+</div>
+
+{% endblock content %}

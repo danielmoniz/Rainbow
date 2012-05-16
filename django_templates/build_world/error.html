@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Access denied{% endblock %}
+
+{% block content %}
+<h1>Access denied</h1>
+{% if message %}
+    <p>{{ message }}</p>
+{% else %}
+    <p>Something went wrong! We're terribly sorry.</p>
+{% endif %}
+{% endblock content %}

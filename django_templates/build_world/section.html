@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ section.name }}</h1>
+
+<div class="notes">
+	<h3>Notes:</h3>
+	{{ section.notes }}
+</div>
+
+<br />
+
+<div class="body">
+	<h3>Body:</h3>
+	{{ section.body }}
+</div>
+
+{% endblock content %}

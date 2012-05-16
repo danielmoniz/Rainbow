@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+
+{% block title %}{{ entity|capfirst }}{% endblock %}
+
+{% block content %}
+    <h1>{{ entity|capfirst }}</h1>
+		{% if user_can_edit %}
+			<a href="{% url build_world:entity_edit entity.etype entity.id %}">(edit)</a>
+			<br />
+		{% endif %}
+    {% if entity.parent != None %}
+        <a href="{% url build_world:entity entity.parent.etype entity.parent.id %}">
+        (parent: {{ entity.parent }})</a>
+    {% endif %}
+    <div class="main section">
+        <div class="entity_list column">
+        {% block sub_entities %}
+
+            {% with entities=entity.entity_set.all %}
+            {% regroup entities|dictsort:"get_etype_display" by etype as etype_list %}
+            {% for etype in etype_list %}
+                <h2>{{ etype.grouper|capfirst }}</h2>
+                {% for sub_entity in etype.list %}
+                    
+                    <a href="/{{ etype.grouper }}/{{ sub_entity.id }}">{{ sub_entity }}</a>
+                    <br />
+                {% endfor %}
+            {% endfor %}
+            {% endwith %}
+        {% endblock sub_entities %}
+        </div>
+
+        <div class="entity_content column">
+        {% block entity_content %}
+			{# ASSUMES THAT THE ENTITY's DATA HAS BEEN CLEANED #}
+			{% autoescape off %}
+					<h2>Body:</h2>
+					{{ entity.body }}
+
+					<h2>Notes:</h2>
+					{{ entity.notes }}
+			{% endautoescape %}
+        {% endblock entity_content %}
+        </div>
+    </div>
+
+{% endblock content %}
+
+{% block right_sidebar %}
+        <h2>Members</h2>
+        {% if user_can_promote %}
+            <a href="{% url build_world:promote entity.etype entity.id %}">
+            (Promote new member)</a>
+        {% endif %}
+		<h3>Owner</h3>
+		<ul><li>
+				<a href="{% url users:profile entity.owner.id %}">{{ entity.owner }}</a>
+		</li></ul>
+		{% if entity.owner != entity.founder %}
+				<h3>Founder</h3>
+				<ul><li>
+						<a href="{% url users:profile entity.founder.id %}">{{ entity.founder }}</a>
+				</li></ul>
+		{% endif %}
+		
+		{% regroup relations|dictsort:"get_relation_display" by get_relation_display as relation_list %}
+        <!--
+        {{ relation_list }}
+		{% for relation_type in relation_list %}
+            {{ relation_type.grouper }}
+        {% endfor %}
+        -->
+		{% for relation_type in relation_list %}
+				<h3>{{ relation_type.grouper }}</h3>
+				<ul>
+				{% for relation in relation_type.list %}
+						<li>
+							<a href="{% url users:profile relation.user.id %}">{{ relation.user }}</a>
+						{% if not relation.user == user %}
+							<a href="{% url build_world:kick etype=entity.etype entity=entity.id user=relation.user.id %}">(kick)</a>
+						{% endif %}
+						</li>
+				{% endfor %}
+				</ul>
+		{% endfor %}
+{% endblock right_sidebar %}

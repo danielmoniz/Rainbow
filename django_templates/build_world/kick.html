@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% debug %}
+
+{% block content %}
+<h1>Are you sure?</h1>
+
+<form method="post">{% csrf_token %}
+{{ form }}
+	<p>Keep in mind that kicking someone out of a project can have negative
+	long term effects.</p>
+	<ul>
+	    <li>Other users may be hesitant to work with you.</li>
+	    <li>Depending on their maturity, the kicked user may tell other
+	    people about it or complain to moderators.</li>
+	    <li>It's always better to discuss these things first and settle
+	    your differences professionally. It's much more highly recommended
+	    that you request their resignation.</li>
+	</ul>
+		
+	<input type="submit" value="Are you 100% freaking sure?" />
+</form>
+{% endblock content %}

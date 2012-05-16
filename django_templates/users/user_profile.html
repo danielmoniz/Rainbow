@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>{{ profile.user.username }}</h1>
+
+<div class="edit">
+    <a href="{% url users:user_profile_edit profile.user.id %}">(edit)</a>
+</div>
+
+<div class="fav_author">
+	<label for="id_fav_author" class="bold">Favourite Author:</label>
+	{{ profile.fav_author }}
+</div>
+
+<br />
+
+<h3>Test Output</h3>
+{% for name, value in profile.get_fields %}
+    {{ name }}: {{ value }}
+    <br />
+{% endfor %}
+
+{% endblock content %}
+
+{% block right_sidebar %}
+    <h2>Projects</h2>
+    {% if owned %}
+        <h3>Owns:</h3>
+        {% for project in owned %}
+            <a href="{% url build_world:entity project.etype project.id %}">{{ project }}</a>
+            <br />
+        {% endfor %}
+    {% endif %}
+    {% regroup relations by get_relation_display as relation_list %}
+    {% for relation_type in relation_list %}
+        <h3>{{ relation_type.grouper }}</h3>
+        {% for relation in relation_type.list %}
+            {% with relation.entity as entity %}
+            <a href="{% url build_world:entity entity.etype entity.id %}">{{ entity.name }}</a>
+            <br />
+            {% endwith %}
+        {% endfor %}
+    {% endfor %}
+{% endblock right_sidebar %}

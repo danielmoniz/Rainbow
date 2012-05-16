@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ STATIC_URL }}main.css" />
+    <title>WriterUniter - {% block title %}A tool for sunshine and rainbows{% endblock title %}</title>
+</head>
+<body>
+<div id="header" class="section">
+	{% include "user_bar.html" %}
+    <div class="main logo header">
+        <span class="title">WriterUniter</span>
+        <span class="tagline">Justice never sleeps</span>
+    </div>
+</div>
+<div id="left_sidebar">
+    {% block left_sidebar %}
+    <ul>
+	<li><a href="{% url build_world:home %}">Home/Browse</a></li>
+	<li><a href="{% url build_world:create %}">Create</a></li>
+	{% if user.is_authenticated %}
+            <li><a href="{% url users:user_profile_current %}">Profile</a></li>
+	    <li><a href="{% url logout %}?next={% url build_world:home %}">Logout</a>
+	{% else %}
+	    <li><a href="{% url login %}?next={{ request.path }}">Login</a>
+            <li><a href="{% url users:join %}?next={{ request.path }}">Join Now!</a>
+	{% endif %}
+    </ul>
+    {% endblock left_sidebar %}
+</div>
+<div id="content">
+    {% block content %}Project Rainbow{% endblock content %}
+</div>
+
+<div id="right_sidebar">
+    {% block right_sidebar %}{% endblock right_sidebar %}
+</div>
+
+<div id="footer">
+	<ul>
+		<a href="{% url about %}">About</a>
+	</ul>
+    Paragon Productions, 2012<br />
+    Built on Python/Django.<br />
+</div>
+
+</body>
+</html>

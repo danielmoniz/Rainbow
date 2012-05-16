@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Edit a Section</h1>
+
+<br />
+
+{% for entity in entity_list %}
+    <a href="/section/{{ entity.id }}">{{ entity }}</a>
+    <a href="/section/edit/{{ entity.id }}">(edit)</a>
+    <br />
+
+{% endfor %}
+{% endblock content %}

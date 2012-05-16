@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% debug %}
+
+{% block content %}
+<h1>Edit: {{ form.name.value }}</h1>
+
+<form method="post">{% csrf_token %}
+{{ form.non_field_errors }}
+	{% for field in form %}
+		<div class="fieldWrapper">
+			{{ field.errors }}
+			{{ field.label_tag }}: {{ field }}
+		</div>
+	{% endfor %}
+		
+	<input type="hidden" name="token" value="{{ token }}" />
+	<input type="submit" value="Submit edits" />
+</form>
+{% endblock content %}

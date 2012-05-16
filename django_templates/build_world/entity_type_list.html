@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Browse{% endblock title %}
+
+{% block content %}
+<div class="entity_list column">
+    {% block entity_list %}
+    {% with entity_list|first as first_entity %}
+    <h1>{{ first_entity.etype|capfirst }} List</h1>
+    {% endwith %}
+
+    {% for entity in entity_list %}
+        <a href="/{{ entity.etype }}/{{ entity.id }}">{{ entity }}</a>
+        <a href="/{{ entity.etype }}/{{ entity.id }}/edit">(edit)</a>
+        <br />
+    {% empty %}
+            Sorry, there are no items here!
+    {% endfor %}
+    {% endblock entity_list %}
+</div>
+<div class="entity_body column">
+</div>
+{% endblock content %}

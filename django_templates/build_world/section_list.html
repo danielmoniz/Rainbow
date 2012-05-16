@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Section List</h1>
+
+{% for section in section_list %}
+    <a href="/section/{{ section.id }}">{{ section }}</a>
+    <a href="/section/{{ section.id }}/edit">(edit)</a>
+    <br />
+{% empty %}
+	Sorry, there are no items here!
+{% endfor %}
+{% endblock content %}

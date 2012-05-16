@@ -1,0 +1,19 @@
+from django.conf.urls import patterns, include, url
+
+# TEST
+from django.views.generic import TemplateView
+
+urlpatterns = patterns('',
+    # Examples:
+    # url(r'^$', 'rainbow.views.home', name='home'),
+    # url(r'^rainbow/', include('rainbow.foo.urls')),
+
+    # Uncomment the admin/doc line below to enable admin documentation:
+    # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+
+    # Uncomment the next line to enable the admin:
+    # url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^test/$', TemplateView.as_view(template_name='test.html'),
+        name='test'),
+)

@@ -1,0 +1,18 @@
+html { padding:0px; background-color:#DDDDDD; font-family:arial; }
+body { float:left; width:100%; padding:0px; margin:0px; background-color:#FFF }
+div#header { width:100%; clear:both; min-height:40px; }
+	div#user_bar { float:right; padding:20px; }
+	div.main.logo.header { margin-left:40%; }
+	    div.main.logo.header span.title { font-size:35px; }
+	    div.main.logo.header span.tagline { font-style:italic; }
+.column { float:left; margin:0 30px 0 30px; }
+.section { clear:both; float:left; }
+div#left_sidebar { float:left; padding:10px; }
+div#right_sidebar { float:right; padding:10px; margin-right:50px; }
+div#content { float:left; padding:10px; min-width: 500px; min-height:500px; }
+div#footer { float:left; clear:both; width:100%; min-height:50px; background-color:#DDDDDD; color:#666666; padding:10px; text-align:center }
+
+/* This modifies the labels of template elements that should be bolded. */
+label.bold { font-weight:bold; }
+
+ul.errorlist li { color:red; }

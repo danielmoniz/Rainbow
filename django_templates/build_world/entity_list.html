@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Browse{% endblock title %}
+
+{% block content %}
+<div class="entity_list column">
+    {% block entity_list %}
+    {% regroup entity_list|dictsort:"get_etype_display" by get_etype_display as etype_list %}
+    {% for etype in etype_list %}
+        <h2>{{ etype.grouper }} List</h2>
+        {% for entity in etype.list %}
+            <a href="/{{ entity.etype }}/{{ entity.id }}">{{ entity.name|capfirst }}</a>
+            <a href="/{{ entity.etype }}/{{ entity.id }}/edit">(edit)</a>
+            <br />
+        {% endfor %}
+    {% empty %}
+            Sorry, there are no entities to display!
+    {% endfor %}
+    {% endblock entity_list %}
+</div>
+<div class="entity_body column">
+</div>
+{% endblock content %}

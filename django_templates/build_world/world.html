@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}{{ world|capfirst }}{% endblock %}
+
+{% block content %}
+<div class="entity_list column">
+    <h1>{{ world|capfirst }}</h1>
+    <a href="{% url build_world:build_world-world_edit world.etype world.id %}">(edit)</a>
+
+    <h2>Stories</h2>
+    {% for story in world.entity_set.all %}
+    {{ story }}
+    {% endfor %}
+
+    <br />
+
+    <h2>Media</h2>
+    To be added...
+    {% endblock %}
+</div>

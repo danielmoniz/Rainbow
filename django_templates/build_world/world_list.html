@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>World List</h1>
+
+{% for world in world_list %}
+    <a href="/world/{{ world.id }}">{{ world }}</a>
+    <a href="/stories?world={{ world.id }}">(stories)</a>
+    <a href="/world/{{ world.id }}/edit">(edit)</a>
+    <br />
+{% empty %}
+	Sorry, there are no items here!
+{% endfor %}
+{% endblock content %}

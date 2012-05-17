@@ -1,0 +1,28 @@
+{% extends "build_world/entity_standard.html" %}
+
+{% load webdesign %}
+
+{% block entity %}
+    <h1>{{ entity|capfirst }}</h1>
+		{% if user_can_edit %}
+			<a href="{% url build_world:entity_edit entity.etype entity.id %}">(edit)</a>
+			<br />
+		{% endif %}
+    {% if entity.parent != None %}
+        <a href="{% url build_world:entity entity.parent.etype entity.parent.id %}">
+        (parent: {{ entity.parent }})</a>
+    {% endif %}
+    <div class="main">
+        <div class="entity_content column">
+        {% block entity_content %}
+		{# ASSUMES THAT THE ENTITY's DATA HAS BEEN CLEANED #}
+		{% autoescape off %}
+			<h2>{{ attr|capfirst }}</h2>
+			{{ entity_attr }}
+			{% lorem 15 p %}
+		{% endautoescape %}
+        {% endblock entity_content %}
+        </div>
+    </div>
+
+{% endblock entity %}

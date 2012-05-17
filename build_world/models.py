@@ -24,6 +24,18 @@ class Entity(models.Model):
     def __unicode__(self):
         return self.etype + ": " + self.name
 
+    @models.permalink
+    def get_absolute_url(self, attr=None):
+        if attr and self.hasattr(attr):
+            return ('entity_attr', (), {
+                'etype':self.etype, 
+                'pk':self.id, 
+                'attr':attr })
+        else:
+            return ('entity', (), {
+                'etype':self.etype, 
+                'pk':self.id })
+
     def has_same_data(self, other, reverse=False, **kwargs):
         """Takes in another entity and possibly some diffs to apply. Applies the diffs to self temporarily and checks if the primary attributes of the two entities are identical.
         """

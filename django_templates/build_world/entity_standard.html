@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}{{ entity|capfirst }}{% endblock %}
+
+{% block content %}
+
+    {# Displays the members of the current entity and their permissions. #}
+    <div id="right_sidebar">
+    {% block right_sidebar %}
+	{% include "build_world/right_sidebar.html" %}
+    {% endblock right_sidebar %}
+    </div>
+    <div id="entity">
+	{% block entity %}{% endblock entity %}
+    </div>
+{% endblock content %}

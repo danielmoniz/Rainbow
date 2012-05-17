@@ -1,7 +1,7 @@
 from django.shortcuts import get_object_or_404, render_to_response
 from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.core.urlresolvers import reverse
 
 from build_world.models import Entity, EntityCreateForm, SectionForm, WorldForm, StoryForm, WorldNonOwnerForm, StoryNonOwnerForm, SectionNonOwnerForm, MemberRelation as Relation, MemberRelationForm, EntityVersion
@@ -30,7 +30,7 @@ class EntityDetailView(DetailView):
         entity = get_object_or_404(Entity, **kwargs)
         if not has_view_perms(request.user, entity):
             return self.error_page
-        return super(self.__class__, self).dispatch(request, *args, **kwargs)
+        return super(EntityDetailView, self).dispatch(request, *args, **kwargs)
 
     def get_queryset(self):
         entity = get_object_or_404(Entity, **self.kwargs)
@@ -52,6 +52,35 @@ class EntityDetailView(DetailView):
         entity.description = convert_to_html(entity.description)
         entity.notes = convert_to_html(entity.notes)
         return entity
+
+class EntityAttrDetailView(EntityDetailView):
+    """A simple view class to display an attribute page for an entity. Eg.
+    display only the Body or the Description.
+    """
+    template_name = 'build_world/entity_attr.html'
+
+    """def get_queryset(self):
+        self.attr = kwargs['attr']
+        del kwargs['attr']
+        return super(EntityAttrDetailView, self).get_queryset()
+        """
+
+    def dispatch(self, *args, **kwargs):
+        self.attr = kwargs['attr']
+        del kwargs['attr']
+        return super(EntityAttrDetailView, self).dispatch(*args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(EntityAttrDetailView, self).get_context_data(**kwargs)
+        entity = kwargs['object']
+        #context['entity_attr'] = getattr(entity, kwargs['attr'])
+        # Try to load the attribute given in the URL. 404 if not exists.
+        try:
+            context['entity_attr'] = getattr(entity, self.attr)
+        except AttributeError:
+            raise Http404
+        context['attr'] = self.attr
+        return context
 
 # @TODO EntityUpdateView and EntityCreateView are very similar. Find a way to duplicate less code.
 class EntityUpdateView(UpdateView):

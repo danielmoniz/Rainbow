@@ -28,12 +28,13 @@
     {% endblock left_sidebar %}
 </div>
 <div id="content">
-    {% block content %}Project Rainbow{% endblock content %}
+    {% block content %}Project Rainbow
+    <div id="right_sidebar">
+	{% block right_sidebar %}{% endblock right_sidebar %}
+    </div>
+    {% endblock content %}
 </div>
 
-<div id="right_sidebar">
-    {% block right_sidebar %}{% endblock right_sidebar %}
-</div>
 
 <div id="footer">
 	<ul>

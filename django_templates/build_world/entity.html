@@ -1,8 +1,8 @@
-{% extends "base.html" %}
+{% extends "build_world/entity_standard.html" %}
 
-{% block title %}{{ entity|capfirst }}{% endblock %}
+{% load webdesign %}
 
-{% block content %}
+{% block entity %}
     <h1>{{ entity|capfirst }}</h1>
 		{% if user_can_edit %}
 			<a href="{% url build_world:entity_edit entity.etype entity.id %}">(edit)</a>
@@ -12,7 +12,7 @@
         <a href="{% url build_world:entity entity.parent.etype entity.parent.id %}">
         (parent: {{ entity.parent }})</a>
     {% endif %}
-    <div class="main section">
+    <div class="main">
         <div class="entity_list column">
         {% block sub_entities %}
 
@@ -32,55 +32,27 @@
 
         <div class="entity_content column">
         {% block entity_content %}
-			{# ASSUMES THAT THE ENTITY's DATA HAS BEEN CLEANED #}
-			{% autoescape off %}
-					<h2>Body:</h2>
-					{{ entity.body }}
+		{# ASSUMES THAT THE ENTITY's DATA HAS BEEN CLEANED #}
+		{% autoescape off %}
+			<div class="section">
+			<h2><a href="{% url build_world:entity_attr etype=entity.etype pk=entity.id attr='notes' %}">Notes:</a></h2>
+			{{ entity.notes|truncatewords_html:50 }}
+			</div>
 
-					<h2>Notes:</h2>
-					{{ entity.notes }}
-			{% endautoescape %}
+			<div class="section">
+			<h2><a href="{% url build_world:entity_attr etype=entity.etype pk=entity.id attr='description' %}">Description:</a></h2>
+			{{ entity.description|truncatewords_html:50 }}
+			</div>
+
+			<div class="section">
+			<h2><a href="{% url build_world:entity_attr etype=entity.etype pk=entity.id attr='body' %}">Body:</a></h2>
+				{{ entity.body|truncatewords_html:300 }}
+			    {% lorem 150 w %}...
+			</div>
+
+		{% endautoescape %}
         {% endblock entity_content %}
         </div>
     </div>
 
-{% endblock content %}
-
-{% block right_sidebar %}
-        <h2>Members</h2>
-        {% if user_can_promote %}
-            <a href="{% url build_world:promote entity.etype entity.id %}">
-            (Promote new member)</a>
-        {% endif %}
-		<h3>Owner</h3>
-		<ul><li>
-				<a href="{% url users:profile entity.owner.id %}">{{ entity.owner }}</a>
-		</li></ul>
-		{% if entity.owner != entity.founder %}
-				<h3>Founder</h3>
-				<ul><li>
-						<a href="{% url users:profile entity.founder.id %}">{{ entity.founder }}</a>
-				</li></ul>
-		{% endif %}
-		
-		{% regroup relations|dictsort:"get_relation_display" by get_relation_display as relation_list %}
-        <!--
-        {{ relation_list }}
-		{% for relation_type in relation_list %}
-            {{ relation_type.grouper }}
-        {% endfor %}
-        -->
-		{% for relation_type in relation_list %}
-				<h3>{{ relation_type.grouper }}</h3>
-				<ul>
-				{% for relation in relation_type.list %}
-						<li>
-							<a href="{% url users:profile relation.user.id %}">{{ relation.user }}</a>
-						{% if not relation.user == user %}
-							<a href="{% url build_world:kick etype=entity.etype entity=entity.id user=relation.user.id %}">(kick)</a>
-						{% endif %}
-						</li>
-				{% endfor %}
-				</ul>
-		{% endfor %}
-{% endblock right_sidebar %}
+{% endblock entity %}

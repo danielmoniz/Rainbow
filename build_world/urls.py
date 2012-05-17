@@ -1,8 +1,8 @@
 from django.conf.urls.defaults import patterns, include, url
-from django.views.generic import ListView
+from django.views.generic import ListView, TemplateView
 from django.views.generic.simple import redirect_to
 from build_world.models import Entity
-from build_world.views import EntityUpdateView, EntityCreateView, EntityDetailView, RelationCreateView, RelationDeleteView
+from build_world.views import EntityUpdateView, EntityCreateView, EntityDetailView, EntityAttrDetailView, RelationCreateView, RelationDeleteView
 
 # Not yet used:
 #from django.contrib.auth.forms import PasswordChangeForm
@@ -16,6 +16,8 @@ urlpatterns = patterns('',
     url(r'^(?P<etype>\w+)/(?P<pk>\d+)/edit/$', EntityUpdateView.as_view(), 
         name='entity_edit'),
     url(r'^(?P<etype>\w+)/(?P<pk>\d+)/$', EntityDetailView.as_view(), name='entity'),
+    url(r'^(?P<etype>\w+)/(?P<pk>\d+)/(?P<attr>\w+)/$', EntityAttrDetailView.as_view(), 
+        name='entity_attr'),
     
     url(r'^(?P<etype>\w+)/(?P<pk>\d+)/promote/$', RelationCreateView.as_view(), 
         name='promote'),

@@ -1,0 +1,36 @@
+<h2>Members</h2>
+{% if user_can_promote %}
+    <a href="{% url build_world:promote entity.etype entity.id %}">
+    (Promote new member)</a>
+{% endif %}
+	<h3>Owner</h3>
+	<ul><li>
+			<a href="{% url users:profile entity.owner.id %}">{{ entity.owner }}</a>
+	</li></ul>
+	{% if entity.owner != entity.founder %}
+			<h3>Founder</h3>
+			<ul><li>
+					<a href="{% url users:profile entity.founder.id %}">{{ entity.founder }}</a>
+			</li></ul>
+	{% endif %}
+	
+	{% regroup relations|dictsort:"get_relation_display" by get_relation_display as relation_list %}
+<!--
+{{ relation_list }}
+	{% for relation_type in relation_list %}
+    {{ relation_type.grouper }}
+{% endfor %}
+-->
+	{% for relation_type in relation_list %}
+			<h3>{{ relation_type.grouper }}</h3>
+			<ul>
+			{% for relation in relation_type.list %}
+					<li>
+						<a href="{% url users:profile relation.user.id %}">{{ relation.user }}</a>
+					{% if not relation.user == user %}
+						<a href="{% url build_world:kick etype=entity.etype entity=entity.id user=relation.user.id %}">(kick)</a>
+					{% endif %}
+					</li>
+			{% endfor %}
+			</ul>
+	{% endfor %}

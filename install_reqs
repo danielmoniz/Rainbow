@@ -1,0 +1,45 @@
+Require:
+- read/write/create access to MySQL, preferably with username 'tolkien'.
+- pip
+	$ sudo apt-get install python-pip python-dev build-essential 
+	$ sudo pip install --upgrade pip 
+	$ sudo pip install --upgrade virtualenv
+- django 1.4 (pip install)
+	$ pip install django
+- virtualenv
+	$ pip install virtualenv
+- mod_wsgi for apache
+	$ sudo apt-get install libapache2-mod-wsgi
+
+Preferably have:
+- git
+	$ sudo apt-get install git
+
+For personal use:
+- vim
+	$ sudo apt-get install vim
+
+
+Modify httpd.conf file to include the following, modified for correct file
+structure: -------
+
+WSGIScriptAlias / /home/daniel/projects/rainbow/rainbow/wsgi.py
+WSGIPythonPath /home/daniel/projects/rainbow/
+
+WSGIDaemonProcess writeruniter.com python-path=/home/daniel/projects/rainbow:/home/daniel/projects/rainbow/virt_env/server/lib/python2.7/site-packages
+
+<Directory /home/daniel/projects/rainbow/rainbow>
+<Files wsgi.py>
+Order deny,allow
+Allow from all
+</Files>
+</Directory>
+
+Alias /static/ /home/daniel/python_practice/author_collab/static/
+
+<Directory /home/daniel/python_practice/author_collab/static>
+Order deny,allow
+Allow from all
+</Directory>
+
+-------------------------------------------------------

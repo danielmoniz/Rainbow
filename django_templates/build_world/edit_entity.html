@@ -6,6 +6,8 @@
 
 <h1>Edit: <i>{{ form.name.value }}</i></h1>
 
+{% include "build_world/markdown_mini.html" %}
+
 <form method="post">{% csrf_token %}
 {{ form.non_field_errors }}
 	<input type="submit" value="Submit edits" />

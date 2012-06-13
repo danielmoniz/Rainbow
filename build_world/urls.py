@@ -52,4 +52,8 @@ urlpatterns = patterns('',
         context_object_name='entity_list',
         template_name='build_world/entity_type_list.html',
     ), name='build_world-section_list'),
+
+    # Other displays
+    url(r'^markdown/$', TemplateView.as_view(
+        template_name='build_world/markdown.html'), name='markdown_help'),
 )

@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Italics and bold</h2>
+
+<p>Italics: _italic text_ or *more italic text*</p>
+
+<p>Output: <i>italic text</i> or <i>more italic text</i></p>
+
+<p>Bold: __bold text__ or **more bold text**</p>
+
+<p>Output: <b>bold text</b> or <b>more bold text</b></p>
+
+<hr />
+
+<h2>Horizontal lines</h2>
+
+<p>A horizontal rule can be made by typing three or more dashes:</p>
+
+<p>---------------</p>
+
+<hr />
+
+<h2>Headers</h2>
+
+<p>Headers of various sizes:</p>
+
+<p># level 1 header (H1) # or ### level 3 header (H3) ###</p>
+
+<p>Output: <h1>level 1 header (H1)</h1> or <h3>level 3 header (H3)</h3></p>
+
+<hr />
+
+<h2>Links</h2>
+
+<p>[This is a link](http://google.com)</p>
+
+<p>Output: <a href="http://google.com">This is a link</a></p>
+
+<hr />
+
+<h2>Block quotes</h2>
+
+<p>> This is quoted.<br />
+This is also quoted.<br /><br />
+This is not quoted.</p>
+
+<p>Output:</p>
+
+<blockquote>
+    <p>This is quoted. This is also quoted.</p>
+</blockquote>
+
+<p>This is not quoted.</p>
+
+<h2>Escaping</h2>
+
+<p>To ensure that any one of these rules does not apply, simply place a backslash before the character. For example:</p>
+
+<p>\*\*Text in stars, not in bold or italics\*\*</p>
+
+<p>Output: **Text in stars, not in bold or italics.**</p>
+
+{% endblock content %}

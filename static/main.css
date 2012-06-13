@@ -13,9 +13,12 @@ div#content { float:left; padding:10px; width: 80%; min-height:500px; }
 	div.entity_content { max-width:1000px; }
 div#footer { float:left; clear:both; width:100%; min-height:50px; background-color:#DDDDDD; color:#666666; padding:10px; text-align:center }
 
+div.markdown_mini_help { background-color:#F3F3F3; float:right; padding:5px; -webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; }
+
 /* This modifies the labels of template elements that should be bolded. */
-label.bold { font-weight:bold; }
+.bold { font-weight:bold; }
 
 ul.errorlist li { color:red; }
 
 textarea { width:100%; }
+blockquote { background-color:#E0EFEF; padding: 0px 10px; border-top: 1px solid #CCC; border-bottom: 1px solid #CCC; }

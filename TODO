@@ -6,7 +6,6 @@ WEB
 
 USABILITY 
 - Make the Body textarea be much larger.
-- Display Markdown guide
 
 MISC
 - Create unit tests using Selenium to generally test site features

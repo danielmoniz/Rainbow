@@ -8,7 +8,7 @@ from build_world.models import Entity, EntityCreateForm, SectionForm, WorldForm,
 from build_world.permissions import has_view_perms, has_edit_perms, has_submit_perms, get_submit_entities, get_promote_entities, has_promote_perms, has_kick_perms, is_user_kickable, outranks, get_outranks_list
 
 # Generic Views
-from django.views.generic import DetailView, UpdateView, CreateView, DeleteView
+from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, ListView
 
 # Helpers
 import markdown
@@ -82,6 +82,22 @@ class EntityAttrDetailView(EntityDetailView):
             raise Http404
         context['attr'] = self.attr
         return context
+
+class EntityListView(ListView):
+    context_object_name='entity_list'
+    template_name='build_world/entity_list.html'
+    #queryset = Entity.objects.all()
+
+    def get_queryset(self):
+        #return Entity.objects.all()
+        queryset = Entity.objects.all()
+        try:
+            queryset = queryset.filter(
+                parent=None, owner_id=self.kwargs['user_id'])
+        except KeyError:
+            # ie. user_id is not set
+            queryset = queryset.filter(parent=None)
+        return queryset.order_by('id')
 
 # @TODO EntityUpdateView and EntityCreateView are very similar. Find a way to duplicate less code.
 class EntityUpdateView(UpdateView):

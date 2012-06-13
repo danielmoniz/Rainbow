@@ -44,6 +44,7 @@ class EntityDetailView(DetailView):
         context['relations'] = relations
         context['user_can_promote'] = has_promote_perms(self.request.user, entity)
         context['user_can_edit'] = has_edit_perms(self.request.user, entity)
+        context['user_can_submit'] = has_submit_perms(self.request.user, entity)
         return context
 
     def get_object(self, queryset=None):
@@ -225,7 +226,13 @@ class EntityCreateView(CreateView):
         form = super(self.__class__, self).get_form(form_class)
         parents = get_submit_entities(self.request.user)
         try:
-            form.fields['parent'].queryset = parents
+            #if self.request.GET and self.request.GET['parent']:
+            if self.kwargs['parent']:
+                parent_item_as_list = parents.filter(id=self.kwargs['parent'])
+                form.fields['parent'].queryset = parent_item_as_list
+                form.fields['parent'].initial = parent_item_as_list[0]
+            else:
+                form.fields['parent'].queryset = parents
         except KeyError:
             pass
         return form

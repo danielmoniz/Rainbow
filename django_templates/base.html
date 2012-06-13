@@ -16,13 +16,13 @@
     {% block left_sidebar %}
     <ul>
 	<li><a href="{% url build_world:home %}">Home/Browse</a></li>
-	<li><a href="{% url build_world:create %}">Create</a></li>
 	{% if user.is_authenticated %}
-            <li><a href="{% url users:user_profile_current %}">Profile</a></li>
+		<li><a href="{% url build_world:create %}">Create</a></li>
+        <li><a href="{% url users:user_profile_current %}">Profile</a></li>
 	    <li><a href="{% url logout %}?next={% url build_world:home %}">Logout</a>
 	{% else %}
 	    <li><a href="{% url login %}?next={{ request.path }}">Login</a>
-            <li><a href="{% url users:join %}?next={{ request.path }}">Join Now!</a>
+        <li><a href="{% url users:join %}?next={{ request.path }}">Join Now!</a>
 	{% endif %}
     </ul>
     {% endblock left_sidebar %}

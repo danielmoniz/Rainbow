@@ -6,6 +6,9 @@
     <h1>{{ entity|capfirst }}</h1>
 		{% if user_can_edit %}
 			<a href="{% url build_world:entity_edit entity.etype entity.id %}">(edit)</a>
+		{% endif %}
+		{% if user_can_submit %}
+			<a href="{% url build_world:create_with_parent parent=entity.id %}">(new child)</a>
 			<br />
 		{% endif %}
     {% if entity.parent != None %}
@@ -47,7 +50,7 @@
 			<div class="section">
 			<h2><a href="{% url build_world:entity_attr etype=entity.etype pk=entity.id attr='body' %}">Body:</a></h2>
 				{{ entity.body|truncatewords_html:300 }}
-			    {% lorem 150 w %}...
+			    {#{% lorem 150 w %}...#}
 			</div>
 
 		{% endautoescape %}

@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 
     # URLS for global actions
     url(r'^create/$', EntityCreateView.as_view(), name='create'),
+    url(r'^create/(?P<parent>\d+)/$', EntityCreateView.as_view(), name='create_with_parent'),
     url(r'^(?P<etype>\w+)/(?P<pk>\d+)/edit/$', EntityUpdateView.as_view(), 
         name='entity_edit'),
     url(r'^(?P<etype>\w+)/(?P<pk>\d+)/$', EntityDetailView.as_view(), name='entity'),

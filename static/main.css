@@ -7,9 +7,9 @@ div#header { width:100%; clear:both; min-height:40px; }
 	    div.main.logo.header span.tagline { font-style:italic; }
 .column { float:left; margin:0 30px 0 30px; }
 .section { clear:both; float:left; }
-div#left_sidebar { float:left; padding:10px; }
+div#left_sidebar { float:left; padding:10px; width:12%; }
 div#right_sidebar { float:right; padding:10px; margin-right:50px; }
-div#content { float:left; padding:10px; width: 100%; min-height:500px; }
+div#content { float:left; padding:10px; width: 80%; min-height:500px; }
 	div.entity_content { max-width:1000px; }
 div#footer { float:left; clear:both; width:100%; min-height:50px; background-color:#DDDDDD; color:#666666; padding:10px; text-align:center }
 
@@ -17,3 +17,5 @@ div#footer { float:left; clear:both; width:100%; min-height:50px; background-col
 label.bold { font-weight:bold; }
 
 ul.errorlist li { color:red; }
+
+textarea { width:100%; }

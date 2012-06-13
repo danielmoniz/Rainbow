@@ -4,7 +4,12 @@ WEB
 - Test!
 - Do a security check!
 
+USABILITY 
+- Make the Body textarea be much larger.
+- Display Markdown guide
+
 MISC
+- Create unit tests using Selenium to generally test site features
 - Allow an entity owner to demote themself (eg. if they make someone else
   owner, they might want to be Chief Contributor).
 - Improve ranking system.
